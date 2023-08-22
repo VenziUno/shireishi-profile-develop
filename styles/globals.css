@@ -1,0 +1,348 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@font-face {
+    font-family: "Casual-Contact-MF-Regular";
+    src: url(./Casual-Contact-MF-Regular.ttf);
+    font-weight: 400;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "candarab";
+    src: url(./candarab.ttf);
+    font-weight: 400;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: "candara";
+    src: url(./candara.ttf);
+    font-weight: 400;
+    font-style: normal;
+}
+
+* {
+    box-sizing: border-box;
+    padding: 0;
+    margin: 0;
+}
+
+html,
+body {
+    max-width: 100vw;
+    overflow-x: hidden;
+    font-family: "Casual-Contact-MF-Regular";
+    /* background: white; */
+    min-height: 100vh;
+    scroll-behavior: smooth !important;
+    background: url("../public/images/body_background.png") no-repeat 50% 50%;
+    background-size: 100% 100%;
+}
+
+/* .landing__background { */
+/* background: linear-gradient(
+      to bottom,
+      rgba(242, 242, 242, 0.97),
+      rgba(244, 244, 92443, 0.2)
+    ),
+    url("../public/images/main-bg.jpg") no-repeat 50% 50%;
+  background-size: 100% 100%; */
+/* } */
+
+.candarab {
+    font-family: "candarab";
+}
+
+.candara {
+    font-family: "candara";
+}
+
+/*body {*/
+/*    color: rgb(var(--foreground-rgb));*/
+/*    background: linear-gradient(to bottom,*/
+/*    transparent,*/
+/*    rgb(var(--background-end-rgb))) rgb(var(--background-start-rgb));*/
+/*}*/
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+.header__background {
+    background: url("../public/images/header.png") no-repeat 50% 50%;
+    background-size: 100% 100%;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.5);
+}
+
+.home__background {
+    position: relative;
+    background: linear-gradient(to top,
+    rgba(242, 242, 242, 0.1),
+    rgba(244, 244, 242, 0.1)),
+    url("../public/images/home_background.png") no-repeat 50% 50%;
+    background-size: 100% 100%;
+    /*background-size: fill;*/
+}
+
+.footer__background {
+    background: url("../public/images/footer-bg.png") no-repeat 50% 50%;
+    background-size: 100% 100%;
+}
+
+.about__background {
+    background: url("../public/images/about-bg.png") no-repeat 50% 50%;
+    background-size: 100% 100%;
+}
+
+.game__background {
+    position: relative;
+    background: linear-gradient(to top,
+    rgba(242, 242, 242, 0.1),
+    rgba(244, 244, 244, 0.1)),
+    url("../public/images/game_for_you_background.png") no-repeat 50% 50%;
+    background-size: 100% 100%;
+    background-size: contain;
+}
+
+.game__background::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-color: rgba(255, 255, 255, 0.01);
+}
+
+.games__background {
+    background: url("../public/images/games-bg.png") no-repeat 50% 50%;
+    background-size: 100% 100%;
+}
+
+.title__union {
+    background: url("../public/images/Union.png") no-repeat 50% 50%;
+    background-size: 100% 100%;
+}
+
+.title__category {
+    background: url("../public/images/gamecate.png") no-repeat 50% 50%;
+    background-size: 100% 100%;
+}
+
+.contact__background {
+    background: url("../public/images/contact-us.png") no-repeat 50% 50%;
+    background-size: 100% 100%;
+}
+
+.follow-us__background {
+    position: relative;
+    background: url("../public/images/followUs-bg.png") no-repeat 50% 50%;
+    background-size: contain;
+    mix-blend-mode: multiply;
+    position: absolute;
+    z-index: -1;
+}
+
+.figure {
+    position: relative;
+    width: 360px;
+    /* can be omitted for a regular non-lazy image */
+    max-width: 100%;
+}
+
+.figure img.image-hover {
+    position: absolute;
+    top: 0;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    object-fit: contain;
+    opacity: 0;
+    transition: opacity 0.2s;
+}
+
+.figure:hover img.image-hover {
+    opacity: 1;
+}
+
+.player {
+    position: relative;
+}
+
+.small-slider {
+    margin: 0 -10px;
+}
+
+.small-slider .slick-slide {
+    margin: 0 10px;
+}
+
+.small-slider > div.slick-list > div.slick-track {
+    position: relative;
+    top: 0;
+    left: 0;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    /*justify-content: end;*/
+}
+
+.background__slider {
+    background: rgb(0, 0, 0);
+    background: linear-gradient(180deg,
+    rgba(0, 0, 0, 1) 62%,
+    rgba(240, 239, 240, 1) 100%);
+
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+}
+
+.flex-container {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+
+.flex-item {
+    flex-basis: 50%;
+}
+
+@media only screen and (max-width: 768px) {
+    .flex-item {
+        flex-basis: 100%;
+    }
+}
+
+.active {
+    border: 4px solid #27a7e1;
+    transition: all;
+}
+
+
+@media only screen and (max-width: 628px) {
+    .about__background {
+        background: url("../public/images/about-bg.png") no-repeat 50% 50%;
+        background-size: 100% 100%;
+        background-size: cover;
+    }
+}
+
+.player-container {
+    position: relative;
+    height: 0;
+    padding-top: 56.25%;
+    /* 16:9 aspect ratio */
+}
+
+.player-container iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 20px;
+    overflow: hidden;
+    box-shadow: 2px 2px 2px #ccc;
+}
+
+
+.custom__container {
+    max-width: 1500px;
+    width: 100%;
+    margin: 0 auto;
+    padding: 0 4rem;
+}
+
+.bg-black{
+    background: black !important;
+}
+
+
+@media (max-width: 1366px) {
+    .custom__container {
+        max-width: 1200px;
+        width: 100%;
+        margin: 0 auto;
+        padding: 0 4rem;
+    }
+}
+
+@media (max-width: 768px) {
+    .custom__container {
+        max-width: 1200px;
+        width: 100%;
+        margin: 0 auto;
+        padding: 0 2rem;
+    }
+}
+
+@media only screen and (max-width: 500px) {
+    .custom__container {
+        padding: 0;
+    }
+}
+
+@media only screen and (max-width: 281px) {
+    .custom__container {
+        padding: 0 0px;
+    }
+}
+
+.button-wrapper {
+    position: relative;
+    display: inline-block;
+}
+
+/*.button-wrapper:hover .button-image {*/
+/*    content: url("/path/to/arrow.png");*/
+/*}*/
+
+.game-item-wrapper {
+    transition: transform 0.2s ease-in-out;
+}
+
+/* .game-item-wrapper:hover {
+  transform: scale(1.2);
+} */
+
+.twitter-feed {
+    position: relative;
+    height: 400px; /* Default height */
+}
+
+/* Adjust the height for smaller screens */
+@media screen and (max-width: 768px) {
+    .twitter-feed {
+        height: 300px;
+    }
+}
+
+/* Adjust the height for even smaller screens */
+@media screen and (max-width: 480px) {
+    .twitter-feed {
+        height: 200px;
+    }
+}
+
+
+.text-4-line {
+    line-clamp: 4;
+    -webkit-line-clamp: 4;
+    overflow: hidden;
+    -webkit-box-orient: vertical;
+    -moz-box-orient: vertical;
+    display: -webkit-box;
+}
+
+.text-1-line {
+    line-clamp: 1;
+    -webkit-line-clamp: 1;
+    overflow: hidden;
+    -webkit-box-orient: vertical;
+    -moz-box-orient: vertical;
+    display: -webkit-box;
+}

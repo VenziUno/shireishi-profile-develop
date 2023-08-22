@@ -1,0 +1,56 @@
+name: Build & Publish
+
+on:
+  push:
+    branches: [ develop ]
+
+env:
+  IMAGE_NAME: ${{ github.repository }} # don't change , this get the repo name on github
+  PROJCET_BRANCH: ${{ github.ref_name }} # don't change , this get the branch or tag on github
+  NAMESPACES: shireishi-s
+  DEPLOYMENT_NAME: profile-frontend
+  CONTAINER_NAME: profile-frontend
+
+jobs:
+  next-build:  
+    runs-on: self-hosted
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v2
+      - name: Login to registry pmberjaya
+        uses: docker/login-action@v1 
+        with:
+          registry: ${{ secrets.PMBERJAYA_REGISTRY }} # need create secret inside repo
+          username: ${{ secrets.PMBERJAYA_USERNAME }} # need create secret inside repo
+          password: ${{ secrets.PMBERJAYA_PASSWORD }} # need create secret inside repo
+      - name: Push to registry latest
+        uses: docker/build-push-action@v2
+        with:
+          platforms: linux/arm64
+          context: ./
+          file: ./Dockerfile.${{ github.ref_name }} 
+          push: true 
+          tags: ${{ secrets.PMBERJAYA_REGISTRY_IMAGE }}/${{ env.IMAGE_NAME }}/${{ env.PROJCET_BRANCH }}:latest
+      - name: Push to registry
+        uses: docker/build-push-action@v2
+        with:
+          platforms: linux/arm64
+          context: ./
+          file: ./Dockerfile.${{ github.ref_name }} 
+          push: true 
+          tags: ${{ secrets.PMBERJAYA_REGISTRY_IMAGE }}/${{ env.IMAGE_NAME }}/${{ env.PROJCET_BRANCH }}:${{ github.sha }}
+          
+  dev:
+    name: Deploy To Dev
+    environment:
+      name: dev
+    runs-on: self-hosted
+    needs: next-build
+    steps:
+    - uses: actions/checkout@master
+    - name: Deploy to cluster
+      uses: nickgronow/kubectl@master
+      with:
+        config_data: ${{ secrets.K8S_CONFIG_ALPHA }}
+        args: set image --record deployment/${{ env.DEPLOYMENT_NAME }} ${{ env.CONTAINER_NAME }}=${{ secrets.PMBERJAYA_REGISTRY_IMAGE }}/${{ env.IMAGE_NAME }}/${{ env.PROJCET_BRANCH }}:${{ github.sha }} -n ${{ env.NAMESPACES }}
+
